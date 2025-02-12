@@ -10,7 +10,7 @@ using RpgAPI.Models;
 namespace RpgAPI.Controller
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class PersonagensExemploController : ControllerBase
     {
         private static List<Personagem> personagens = new List<Personagem>()
