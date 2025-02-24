@@ -67,16 +67,36 @@ namespace RpgAPI.Controller
             return Ok(listaBusca);
         }
 
-        // [HttpGet("GetRemovendoMago")]
-        // public IActionResult GetRemovendoMago(){
-        //     Personagem pRemove = personagens.Find( p => p.Classe ==ClasseEnum.Mago);
-        //     personagens.Remove(pRemove);
+        [HttpGet("GetRemovendoMago")]
+        public IActionResult GetRemovendoMago(){
+            Personagem pRemove = personagens.Find( p => p.Classe ==ClasseEnum.Mago);
+            personagens.Remove(pRemove);
+            return Ok("Personagem Removido: " + pRemove.Nome);
+        }
 
-        // }
+        [HttpGet("GetByForca/{forca}")]
+        public IActionResult Get(int forca){
+            List<Personagem> listaFinal = personagens.FindAll(p=> p.Forca == forca);
+            return Ok(listaFinal);
+        }
+
+        [HttpGet("GetByEnum/{enumId}")]
+        public IActionResult GetByEnum(int enumId){
+            ClasseEnum enumDigitado = (ClasseEnum)enumId;
+
+            List<Personagem> listaBusca = personagens.FindAll(p => p.Classe == enumDigitado);
+
+            return Ok(listaBusca);
+        }
+
 
         //Métodos POST
         [HttpPost]
         public IActionResult AddPersonagem(Personagem novoPersonagem){
+            
+            if(novoPersonagem.Inteligencia == 0)
+                return BadRequest("InteligÊncia não pode ter valor igual a 0(zero)");
+
             personagens.Add(novoPersonagem);
             return Ok(personagens);
         }    
