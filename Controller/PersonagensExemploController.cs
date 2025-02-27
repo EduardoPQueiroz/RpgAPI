@@ -69,7 +69,7 @@ namespace RpgAPI.Controller
 
         [HttpGet("GetRemovendoMago")]
         public IActionResult GetRemovendoMago(){
-            Personagem pRemove = personagens.Find( p => p.Classe ==ClasseEnum.Mago);
+            Personagem pRemove = personagens.Find( p => p.Classe == ClasseEnum.Mago);
             personagens.Remove(pRemove);
             return Ok("Personagem Removido: " + pRemove.Nome);
         }
