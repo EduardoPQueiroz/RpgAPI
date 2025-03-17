@@ -1,0 +1,5 @@
+workstation id=DB-DS-EDUPISS.mssql.somee.com;packet size=4096;user id=saDuPiss;pwd=*123456HAS*;data source=DB-DS-EDUPISS.mssql.somee.com;persist security info=False;initial catalog=DB-DS-EDUPISS;TrustServerCertificate=True
+
+
+http://dupiss.somee.com
+http://www.dupiss.somee.com
