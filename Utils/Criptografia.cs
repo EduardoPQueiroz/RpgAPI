@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
+using RpgAPI.Models;
+using RpgAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace RpgAPI.Utils
 {
     public class Criptografia
@@ -8,5 +14,19 @@ namespace RpgAPI.Utils
                 hash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
+        public static bool VerificarPasswordHash(string password, byte[] hash, byte[] salt){
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(salt)){
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for(int i = 0; i < computedHash.Length; i++){
+                    if(computedHash[i] != hash[i]){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        
     }
 }
